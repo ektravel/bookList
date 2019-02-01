@@ -1,0 +1,23 @@
+{
+  "name": "book-list",
+  "version": "1.0.0",
+  "description": "collections of books ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ektravel/bookList.git"
+  },
+  "author": "ektravel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ektravel/bookList/issues"
+  },
+  "homepage": "https://github.com/ektravel/bookList#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
