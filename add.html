@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Book Tracker</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+            <a class="navbar-brand" href="/">Book Shelf</a>
+        </div>
+    </header>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">My Book Tracker</h1>
+            <p class="lead text-muted">A quick reference to the books I have listened to since I discovered audiobooks in 2018.</p>
+            <p>
+                <a href="/"><button class="btn btn-dark my-2">Home Page</button></a> 
+                <a href="/all"><button class="btn btn-dark my-2">Show All Books</button></a>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Add Book</h5>
+                    <p class="card-text">
+                        <form>
+                            <div class="form-group">
+                                <label for="bookTitle">Book Title</label>
+                                <input type="text" class="form-control" id="book-title">
+                            </div>
+                            <div class="form-group">
+                                <label for="bookAuthor">Book Author</label>
+                                <input type="text" class="form-control" id="book-author">
+                            </div>
+                            <div class="form-group">
+                                <label for="bookRating">Book Rating</label>
+                                <input type="text" class="form-control" id="book-rating">
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="add-btn">Add to Book Shelf</button>
+                        </form>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $("#add-btn").on("click", function(event){
+            event.preventDefault();
+
+            let newBook = {
+                title: $("#bookTitle").val().trim(),
+                author: $("#bookAuthor").val().trim(),
+                rating: $("#bookRating").val().trim()
+            };
+
+            $.post("/api/books", newBook)
+            .then(function(data){
+                alert("New book has been added to the book shelf");
+            });
+        });
+
+    </script>
+</body>
+</html>

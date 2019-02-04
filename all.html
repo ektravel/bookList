@@ -6,6 +6,7 @@
     <title>Book Tracker</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery.js"></script>
 </head>
 
 <body>
@@ -31,12 +32,21 @@
                     <h5 class="card-title">My Book Shelf</h5>
                     <p class="card-text" id="bookInfoSection"></p>
                 </div>
-
             </div>
         </div>
     </div>
 
-    </div>
+    <script type="text/javascript">
+        $.get("/api/books", function(data){
+            for (let i = 0; i < data.length; i++){
+                let bookSection = $("<div>");
+                bookSection.attr("id", "book-"+ i);
+                $("#bookInfoSection").append(bookSection);
+                $("#book-"+ i).append("<br>Title: " + data[i].title);
+                $("#book-" + i).append("<br>Author: " + data[i].author);
+                $("#book-" + i).append("<br>Rating: " + data[i].rating)
+            }
+        });
+    </script>
 </body>
-
 </html>
