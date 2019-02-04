@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require("path");
 
 const app = express();
 const PORT = 3000;
@@ -29,7 +30,7 @@ addBook("A World Lit Only by Fire", "William Manchester", 3);
 addBook("How Not to Die", "Michael Greger", 3);
 
 app.get("/", function(req,res){
-    res.send("All the books I have listened to since 2018!");
+    res.sendFile(path.join(__dirname, "view.html"));
 });
 
 app.get("/api/:books?", function(req,res){
@@ -41,7 +42,7 @@ app.get("/api/:books?", function(req,res){
                 return res.json(books[i]);
             }
         }
-        return res.send("No author found"); 
+        return res.json(false); 
     }
     return res.json(books);
 });
